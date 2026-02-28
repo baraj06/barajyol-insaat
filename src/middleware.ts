@@ -3,39 +3,41 @@ import type { NextRequest } from 'next/server';
 import { siteConfig } from './config/site';
 
 export function middleware(request: NextRequest) {
-    const { maintenanceMode } = siteConfig;
     const { pathname } = request.nextUrl;
+    const isMaintenanceMode = siteConfig.maintenanceMode;
 
-    // If maintenance mode is ON and we are NOT already on the maintenance page
-    // AND we are not trying to access static files or the public folder
+    // LOG: Bu Vercel Dashboard -> Logs kısmında görünür
+    console.log(`[Middleware] Hedef: ${pathname} | Bakim Modu: ${isMaintenanceMode}`);
+
+    // 1. Statik dosyaları ve API rotalarını atla
     if (
-        maintenanceMode &&
-        !pathname.startsWith('/maintenance') &&
-        !pathname.startsWith('/_next') &&
-        !pathname.startsWith('/api') &&
-        !pathname.includes('.') // for images, favicons, etc.
+        pathname.startsWith('/_next') ||
+        pathname.startsWith('/api') ||
+        pathname.includes('.') ||
+        pathname === '/favicon.ico'
     ) {
-        return NextResponse.redirect(new URL('/maintenance', request.url));
+        return NextResponse.next();
     }
 
-    // If maintenance mode is OFF and we try to access the maintenance page directly
-    // Redirect back to home
-    if (!maintenanceMode && pathname.startsWith('/maintenance')) {
-        return NextResponse.redirect(new URL('/', request.url));
+    // 2. Bakım sayfasındaysak sonsuz döngüye girmeyelim
+    if (pathname === '/maintenance') {
+        // Eğer mod KAPALIYSA ama kullanıcı buradaysa, ana sayfaya at
+        if (!isMaintenanceMode) {
+            return NextResponse.redirect(new URL('/', request.url));
+        }
+        return NextResponse.next();
+    }
+
+    // 3. Bakım modu AÇIKSA, her şeyi /maintenance sayfasına yönlendir
+    if (isMaintenanceMode) {
+        console.log(`[Middleware] YONLENDIRILIYOR -> /maintenance`);
+        return NextResponse.redirect(new URL('/maintenance', request.url));
     }
 
     return NextResponse.next();
 }
 
+// Tüm yolları yakalaması için matcher'ı basitleştirdik
 export const config = {
-    matcher: [
-        /*
-         * Match all request paths except for the ones starting with:
-         * - api (API routes)
-         * - _next/static (static files)
-         * - _next/image (image optimization files)
-         * - favicon.ico (favicon file)
-         */
-        '/((?!api|_next/static|_next/image|favicon.ico).*)',
-    ],
+    matcher: '/:path*',
 };
