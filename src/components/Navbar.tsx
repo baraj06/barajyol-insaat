@@ -179,19 +179,26 @@ const Navbar = () => {
                 @media (max-width: 768px) {
                     .hidden-mobile { display: none !important; }
                     .navbar-logo {
-                        height: 70px !important;
-                        position: static !important;
+                        height: 110px !important;
+                        width: auto !important;
+                        position: relative !important;
+                        top: 0 !important;
+                        left: 0 !important;
                         transform: none !important;
-                        margin-left: 0.5rem;
+                        margin-left: -10px !important;
                     }
                     .logo-container {
                         overflow: visible !important;
                         margin-left: 0 !important;
                         flex: 1 !important;
+                        background: transparent !important;
                     }
                     nav {
-                        padding: 0 1rem !important;
-                        height: 70px !important;
+                        padding: 0 1.5rem !important;
+                        height: 85px !important;
+                        background: rgba(255,255,255,0.95) !important;
+                        backdrop-filter: blur(10px) !important;
+                        border-radius: 20px !important;
                     }
                 }
                 @media (min-width: 769px) {
