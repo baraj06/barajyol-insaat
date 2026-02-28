@@ -179,26 +179,31 @@ const Navbar = () => {
                 @media (max-width: 768px) {
                     .hidden-mobile { display: none !important; }
                     .navbar-logo {
-                        height: 110px !important;
+                        height: 90px !important;
                         width: auto !important;
-                        position: relative !important;
-                        top: 0 !important;
-                        left: 0 !important;
+                        position: static !important;
                         transform: none !important;
-                        margin-left: -10px !important;
+                        margin-left: 0 !important;
+                        filter: drop-shadow(0 4px 6px rgba(0,0,0,0.05));
                     }
                     .logo-container {
                         overflow: visible !important;
                         margin-left: 0 !important;
                         flex: 1 !important;
                         background: transparent !important;
+                        display: flex !important;
+                        align-items: center !important;
+                        justify-content: flex-start !important;
+                        height: auto !important;
                     }
                     nav {
-                        padding: 0 1.5rem !important;
-                        height: 85px !important;
-                        background: rgba(255,255,255,0.95) !important;
+                        padding: 0 1rem !important;
+                        height: 75px !important;
+                        background: rgba(255,255,255,0.98) !important;
                         backdrop-filter: blur(10px) !important;
-                        border-radius: 20px !important;
+                        border-radius: 50px !important;
+                        box-shadow: 0 10px 30px rgba(0,0,0,0.08) !important;
+                        border: 1px solid rgba(0,0,0,0.05) !important;
                     }
                 }
                 @media (min-width: 769px) {
