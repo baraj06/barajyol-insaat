@@ -179,32 +179,26 @@ const Navbar = () => {
                 @media (max-width: 768px) {
                     .hidden-mobile { display: none !important; }
                     .navbar-logo {
-                        height: 75px !important;
+                        height: 220px !important;
+                        position: absolute !important;
+                        top: 50% !important;
+                        left: -15px !important;
+                        transform: translateY(-50%) !important;
+                        mix-blend-mode: multiply !important;
                         width: auto !important;
-                        position: static !important;
-                        transform: none !important;
-                        margin-left: 0 !important;
-                        background: transparent !important;
-                        mix-blend-mode: multiply; /* Beyaz arka planı olan görseller için şeffaflık hilesi */
+                        maxWidth: none !important;
                     }
                     .logo-container {
-                        overflow: visible !important;
-                        margin-left: 0 !important;
+                        height: 70px !important;
+                        overflow: hidden !important;
+                        position: relative !important;
                         flex: 1 !important;
-                        background: transparent !important;
-                        display: flex !important;
-                        align-items: center !important;
-                        justify-content: flex-start !important;
-                        height: auto !important;
                     }
                     nav {
                         padding: 0 1rem !important;
                         height: 70px !important;
-                        background: rgba(255,255,255,0.95) !important;
-                        backdrop-filter: blur(10px) !important;
-                        border-radius: 40px !important;
-                        box-shadow: 0 8px 25px rgba(0,0,0,0.05) !important;
-                        border: 1px solid rgba(0,0,0,0.03) !important;
+                        background: #ffffff !important;
+                        border-radius: 50px !important;
                     }
                 }
                 @media (min-width: 769px) {
