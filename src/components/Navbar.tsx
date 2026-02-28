@@ -29,20 +29,21 @@ const Navbar = () => {
         borderRadius: '100px',
       }}>
         {/* Devasa Logo Container */}
-        <div style={{
+        <div className="logo-container" style={{
           flex: '1',
           height: '80px',
           display: 'flex',
           alignItems: 'center',
           position: 'relative',
-          overflow: 'hidden', // Fazlalıkları kırparak zoom etkisi yaratır
+          overflow: 'hidden',
           marginLeft: '-1rem'
         }}>
           <img
             src="/logo_final.png"
             alt="Barajyol İnşaat"
+            className="navbar-logo"
             style={{
-              height: '300px', // Önceki devasa boyut hilesi
+              height: '300px',
               width: 'auto',
               maxWidth: 'none',
               objectFit: 'contain',
@@ -51,7 +52,8 @@ const Navbar = () => {
               left: '-20px',
               transform: 'translateY(-50%)',
               zIndex: 10,
-              pointerEvents: 'none'
+              pointerEvents: 'none',
+              transition: 'all 0.3s ease'
             }}
           />
         </div>
@@ -71,7 +73,7 @@ const Navbar = () => {
           <div className="nav-dropdown-parent" style={{ position: 'relative' }}>
             <span className="nav-link" style={{ cursor: 'pointer' }}>Projeler</span>
             <div className="nav-dropdown">
-              <a href="/projeler/devam-eden">Devam Eden</a>
+              <a href="/projeler/dev-eden">Devam Eden</a>
               <a href="/projeler/tamamlanan">Tamamlanan</a>
             </div>
           </div>
@@ -83,28 +85,33 @@ const Navbar = () => {
         <div style={{ flex: '1' }}></div>
 
         {/* Mobile Toggle */}
-        <button className="mobile-only" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} style={{ background: 'none', border: 'none', color: 'white', cursor: 'pointer' }}>
-          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        <button className="mobile-only" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} style={{ background: 'none', border: 'none', color: 'var(--primary)', cursor: 'pointer', padding: '0.5rem', zIndex: 1100 }}>
+          {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </nav>
 
       {/* Mobile Menu Content */}
-      {mobileMenuOpen && (
-        <div className="glass-card" style={{
+      <motion.div
+        initial={false}
+        animate={mobileMenuOpen ? { opacity: 1, y: 0, display: 'flex' } : { opacity: 0, y: -20, display: 'none' }}
+        className="glass-card mobile-menu"
+        style={{
           marginTop: '0.5rem',
-          padding: '1.5rem',
-          display: 'flex',
+          padding: '2rem',
           flexDirection: 'column',
-          gap: '1rem',
-          textAlign: 'center'
-        }}>
-          <a href="/" onClick={() => setMobileMenuOpen(false)}>Ana Sayfa</a>
-          <a href="/projeler/devam-eden" onClick={() => setMobileMenuOpen(false)}>Devam Eden Projeler</a>
-          <a href="/projeler/tamamlanan" onClick={() => setMobileMenuOpen(false)}>Tamamlanan Projeler</a>
-          <a href="/sertifikalar" onClick={() => setMobileMenuOpen(false)}>Sertifikalar</a>
-          <a href="/iletisim" onClick={() => setMobileMenuOpen(false)}> İletişim</a>
-        </div>
-      )}
+          gap: '1.5rem',
+          textAlign: 'center',
+          fontWeight: 700,
+          fontSize: '1.1rem',
+          boxShadow: '0 20px 40px rgba(0,0,0,0.1)'
+        }}
+      >
+        <a href="/" onClick={() => setMobileMenuOpen(false)} style={{ color: 'var(--primary)' }}>Ana Sayfa</a>
+        <a href="/projeler/devam-eden" onClick={() => setMobileMenuOpen(false)}>Devam Eden Projeler</a>
+        <a href="/projeler/tamamlanan" onClick={() => setMobileMenuOpen(false)}>Tamamlanan Projeler</a>
+        <a href="/sertifikalar" onClick={() => setMobileMenuOpen(false)}>Sertifikalar</a>
+        <a href="/iletisim" onClick={() => setMobileMenuOpen(false)}>İletişim</a>
+      </motion.div>
 
       <style jsx>{`
                 .nav-link {
@@ -170,9 +177,25 @@ const Navbar = () => {
 
                 @media (max-width: 768px) {
                     .hidden-mobile { display: none !important; }
+                    .navbar-logo {
+                        height: 70px !important;
+                        position: static !important;
+                        transform: none !important;
+                        margin-left: 0.5rem;
+                    }
+                    .logo-container {
+                        overflow: visible !important;
+                        margin-left: 0 !important;
+                        flex: 1 !important;
+                    }
+                    nav {
+                        padding: 0 1rem !important;
+                        height: 70px !important;
+                    }
                 }
                 @media (min-width: 769px) {
                     .mobile-only { display: none !important; }
+                }
             `}</style>
     </div>
   );

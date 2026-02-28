@@ -96,6 +96,19 @@ ul {
   scroll-snap-stop: always;
 }
 
+@media (max-width: 768px) {
+  .full-page-section {
+    height: auto;
+    min-height: 100vh;
+    padding: 100px 0;
+  }
+
+  .container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
 .premium-button {
   background: var(--accent);
   color: var(--primary);

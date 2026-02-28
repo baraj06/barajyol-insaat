@@ -53,14 +53,15 @@ const Hero = () => {
                 }}></div>
             </div>
 
-            <div className="container" style={{ position: 'relative', zIndex: 10, width: '100%' }}>
+            <div className="container hero-content" style={{ position: 'relative', zIndex: 10, width: '100%' }}>
                 <motion.div
                     initial={{ opacity: 0, x: -50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 1 }}
+                    className="hero-text-wrapper"
                     style={{ maxWidth: '800px' }}
                 >
-                    <span style={{
+                    <span className="hero-badge" style={{
                         color: 'var(--primary)',
                         fontWeight: 700,
                         display: 'block',
@@ -73,19 +74,19 @@ const Hero = () => {
                         Mühendislikte Çeyrek Asırlık Güven
                     </span>
 
-                    <h1 style={{
-                        fontSize: 'clamp(3.5rem, 6vw, 5.5rem)',
-                        lineHeight: 1,
+                    <h1 className="hero-title" style={{
+                        fontSize: 'clamp(2.5rem, 6vw, 5.5rem)',
+                        lineHeight: 1.1,
                         marginBottom: '2.5rem',
                         fontWeight: 900,
                         color: 'var(--text-main)'
                     }}>
                         Doğayı <br />
-                        <span className="gradient-text" style={{ background: 'linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Mühendislik ve Tutkuyla</span> <br />
+                        <span className="gradient-text">Mühendislik ve Tutkuyla</span> <br />
                         Şekillendiriyoruz
                     </h1>
 
-                    <p style={{
+                    <p className="hero-desc" style={{
                         fontSize: '1.2rem',
                         color: 'var(--text-main)',
                         marginBottom: '3.5rem',
@@ -97,16 +98,17 @@ const Hero = () => {
                         10 yılı aşkın sürede edindiği teknik ve mühendislik bakış açısıyla projelerimize devam ediyoruz.
                     </p>
 
-                    <div style={{ display: 'flex', gap: '1.5rem', marginBottom: '2.5rem' }}>
+                    <div className="hero-btns" style={{ display: 'flex', gap: '1.5rem', marginBottom: '3.5rem' }}>
                         <a href="/projeler/devam-eden" className="premium-button" style={{
                             padding: '1.4rem 3rem',
                             fontSize: '1.1rem',
                             borderRadius: '100px',
-                            boxShadow: '0 20px 40px rgba(245, 158, 11, 0.3)'
+                            boxShadow: '0 20px 40px rgba(245, 158, 11, 0.3)',
+                            justifyContent: 'center'
                         }}>
-                            Projelerimizi İnceleyin <ArrowRight size={20} />
+                            Projelerimiz <ArrowRight size={20} />
                         </a>
-                        <a href="/iletisim" style={{
+                        <a href="/iletisim" className="secondary-button" style={{
                             background: 'rgba(255,255,255,0.8)',
                             backdropFilter: 'blur(10px)',
                             border: '1px solid var(--glass-border)',
@@ -115,21 +117,20 @@ const Hero = () => {
                             fontWeight: 700,
                             cursor: 'pointer',
                             color: 'var(--primary)',
-                            transition: 'all 0.3s ease'
+                            transition: 'all 0.3s ease',
+                            textAlign: 'center'
                         }}
-                            onMouseOver={(e) => e.currentTarget.style.background = 'white'}
-                            onMouseOut={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.8)'}
                         >
                             Bize Ulaşın
                         </a>
                     </div>
 
                     {/* Compact Feature Grid Integrated into Hero */}
-                    <div className="grid-3 grid" style={{ gap: '2rem', marginTop: '1rem' }}>
+                    <div className="hero-features grid" style={{ gap: '2rem', marginTop: '1rem' }}>
                         {[
                             { icon: <ShieldCheck size={32} />, title: 'Güven ve Kalite', desc: 'Uluslararası standartlarda mühendislik ve güvenlik sertifikaları.' },
-                            { icon: <HardHat size={32} />, title: 'Ağır Altyapı Uzmanlığı', desc: 'Baraj, karayolu ve tünel inşaatlarında devleşen tecrübe.' },
-                            { icon: <Landmark size={32} />, title: 'Modern Yapılar', desc: 'Geleceğin şehirlerini teknoloji ve sağlam temellerle kuruyoruz.' }
+                            { icon: <HardHat size={32} />, title: 'Ağır Altyapı Uzmanlığı', desc: 'Baraj ve tünel inşaatlarında devleşen tecrübe.' },
+                            { icon: <Landmark size={32} />, title: 'Modern Yapılar', desc: 'Geleceğin şehirlerini sağlam temellerle kuruyoruz.' }
                         ].map((feature, i) => (
                             <motion.div
                                 key={i}
@@ -154,6 +155,32 @@ const Hero = () => {
                         ))}
                     </div>
                 </motion.div>
+
+                <style jsx>{`
+                    @media (max-width: 768px) {
+                        .hero-content {
+                            padding-top: 140px !important;
+                            padding-bottom: 60px !important;
+                        }
+                        .hero-title {
+                            font-size: 2.8rem !important;
+                            line-height: 1.2 !important;
+                            margin-bottom: 1.5rem !important;
+                        }
+                        .hero-desc {
+                            font-size: 1rem !important;
+                            line-height: 1.6 !important;
+                            margin-bottom: 2rem !important;
+                        }
+                        .hero-btns {
+                            flex-direction: column !important;
+                            gap: 1rem !important;
+                        }
+                        .hero-features {
+                            grid-template-columns: 1fr !important;
+                        }
+                    }
+                `}</style>
             </div>
         </section>
     );
