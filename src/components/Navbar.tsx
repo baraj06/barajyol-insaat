@@ -179,12 +179,13 @@ const Navbar = () => {
                 @media (max-width: 768px) {
                     .hidden-mobile { display: none !important; }
                     .navbar-logo {
-                        height: 90px !important;
+                        height: 75px !important;
                         width: auto !important;
                         position: static !important;
                         transform: none !important;
                         margin-left: 0 !important;
-                        filter: drop-shadow(0 4px 6px rgba(0,0,0,0.05));
+                        background: transparent !important;
+                        mix-blend-mode: multiply; /* Beyaz arka planı olan görseller için şeffaflık hilesi */
                     }
                     .logo-container {
                         overflow: visible !important;
@@ -198,12 +199,12 @@ const Navbar = () => {
                     }
                     nav {
                         padding: 0 1rem !important;
-                        height: 75px !important;
-                        background: rgba(255,255,255,0.98) !important;
+                        height: 70px !important;
+                        background: rgba(255,255,255,0.95) !important;
                         backdrop-filter: blur(10px) !important;
-                        border-radius: 50px !important;
-                        box-shadow: 0 10px 30px rgba(0,0,0,0.08) !important;
-                        border: 1px solid rgba(0,0,0,0.05) !important;
+                        border-radius: 40px !important;
+                        box-shadow: 0 8px 25px rgba(0,0,0,0.05) !important;
+                        border: 1px solid rgba(0,0,0,0.03) !important;
                     }
                 }
                 @media (min-width: 769px) {
